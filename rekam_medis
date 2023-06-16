@@ -1,0 +1,225 @@
+-- MariaDB dump 10.19  Distrib 10.4.24-MariaDB, for Win64 (AMD64)
+--
+-- Host: localhost    Database: rekam_medis
+-- ------------------------------------------------------
+-- Server version	10.4.24-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `appointment`
+--
+
+DROP TABLE IF EXISTS `appointment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `appointment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_pasien` varchar(30) NOT NULL,
+  `jenis_kelamin` varchar(10) NOT NULL,
+  `telephone` varchar(15) NOT NULL,
+  `alamat` varchar(30) NOT NULL,
+  `tglperiksa` varchar(10) NOT NULL,
+  `layanan` varchar(30) NOT NULL,
+  `created_at` date NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `appointment`
+--
+
+LOCK TABLES `appointment` WRITE;
+/*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
+INSERT INTO `appointment` VALUES (4,'Shendi','Laki-laki','2147483647','Cualang','2023-06-05','ImplanGigi','2023-06-11'),(7,'Mekar','Perempuan','2147483647','Tulungagung','2023-06-15','PencabutanGigi','2023-06-12'),(8,'Cahya','Perempuan','085895331967','Bekasi','2023-06-14','Bleaching','2023-06-13'),(9,'triyatul','Perempuan','085648178257','Jalan Kalibokor 58','2023-06-16','Bleaching','2023-06-15'),(10,'triga','Perempuan','085895331967','Jl. Wonorejo','2023-06-16','PencabutanGigi','2023-06-15'),(11,'Nisa','Perempuan','085432675456','Gresik','2023-06-16','PencabutanGigi','2023-06-15'),(12,'Gading','Perempuan','085895331967','Kabuh','2023-06-17','ImplanGigi','2023-06-15'),(13,'fauzi','Laki-laki','089765676545','Sidoarjo','2023-06-16','Bleaching','2023-06-15');
+/*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `data_pemeriksaan`
+--
+
+DROP TABLE IF EXISTS `data_pemeriksaan`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `data_pemeriksaan` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_pasien` int(11) NOT NULL,
+  `penyakit` varchar(300) NOT NULL,
+  `keluhan` text NOT NULL,
+  `tgl` varchar(200) NOT NULL,
+  `id_rawatinap` varchar(11) NOT NULL,
+  `biaya_pengobatan` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_pasien` (`id_pasien`),
+  KEY `id_pasien_2` (`id_pasien`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `data_pemeriksaan`
+--
+
+LOCK TABLES `data_pemeriksaan` WRITE;
+/*!40000 ALTER TABLE `data_pemeriksaan` DISABLE KEYS */;
+INSERT INTO `data_pemeriksaan` VALUES (1,1,'Bleacing','Gigi kurang dirawat','2023-06-12','0',120000),(2,2,'Scaling','kurang gosok gigi','2023-06-12','0',150000),(3,1,'bbb','bbb','2023-06-12','0',55),(4,2,'bbb','bb','2023-06-12','0',666),(5,2,'bbb','bb','2023-06-12','0',666),(6,3,'Bleaching','Gigi Kuning','2023-06-15','0',120000),(7,2,'Cabut Gigi','Gigi berlobang','2023-06-15','0',300000),(8,3,'Bleaching','Kurang gosok gigi','2023-06-15','0',140000),(9,0,'Scalling','Gigi berkarang','2023-06-15','0',200000),(10,0,'Bleaching','Gigi kuning','2023-06-15','0',140000),(11,0,'5','Gigi kuning','2023-06-15','0',140000),(12,5,'Bleaching','gaada','2023-06-15','0',120000),(13,6,'Scaling','Karang gigi menumpuk','2023-06-15','0',200000),(14,7,'Invisalign','gigi tidak rata','2023-06-15','0',1500000);
+/*!40000 ALTER TABLE `data_pemeriksaan` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `obat`
+--
+
+DROP TABLE IF EXISTS `obat`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `obat` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_obat` varchar(300) NOT NULL,
+  `stok` int(11) NOT NULL,
+  `harga` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `obat`
+--
+
+LOCK TABLES `obat` WRITE;
+/*!40000 ALTER TABLE `obat` DISABLE KEYS */;
+INSERT INTO `obat` VALUES (2,'antibilotil',10,5000),(4,'Pasta gigi',1,14000),(5,'Obat Kumur',20,50000);
+/*!40000 ALTER TABLE `obat` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pasien`
+--
+
+DROP TABLE IF EXISTS `pasien`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pasien` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_pasien` varchar(200) NOT NULL,
+  `tgl_lahir` varchar(200) NOT NULL,
+  `alamat` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pasien`
+--
+
+LOCK TABLES `pasien` WRITE;
+/*!40000 ALTER TABLE `pasien` DISABLE KEYS */;
+INSERT INTO `pasien` VALUES (2,'Gading','2003-06-21','Kabuh'),(4,'Tasriqul','2003-07-29','Jabon'),(5,'Indah','2002-11-05','Surabaya'),(6,'Triyatul','2003-06-15','Kalibokor'),(7,'Nabil','2023-06-15','Sidoarjo');
+/*!40000 ALTER TABLE `pasien` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pegawai`
+--
+
+DROP TABLE IF EXISTS `pegawai`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pegawai` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `nama_pegawai` varchar(200) NOT NULL,
+  `alamat` varchar(360) NOT NULL,
+  `pekerjaan` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pegawai`
+--
+
+LOCK TABLES `pegawai` WRITE;
+/*!40000 ALTER TABLE `pegawai` DISABLE KEYS */;
+INSERT INTO `pegawai` VALUES (1,'leon','admin','leon prasetya','Surabaya',1),(4,'indahae','123','Indah','Tulungagung',1),(6,'admin','admin','Descic','Surabaya',2);
+/*!40000 ALTER TABLE `pegawai` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `riwayat_obat`
+--
+
+DROP TABLE IF EXISTS `riwayat_obat`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `riwayat_obat` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_penyakit` int(11) NOT NULL,
+  `id_pasien` int(11) NOT NULL,
+  `id_obat` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `riwayat_obat`
+--
+
+LOCK TABLES `riwayat_obat` WRITE;
+/*!40000 ALTER TABLE `riwayat_obat` DISABLE KEYS */;
+INSERT INTO `riwayat_obat` VALUES (1,2,2,4,1),(2,3,1,1,1),(3,7,2,4,2),(4,10,0,4,1);
+/*!40000 ALTER TABLE `riwayat_obat` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (8,'user','murahsenyum@gmail.com','123'),(9,'Gading','gadingdnr@gmail.com','81dc9bdb52d04dc20036dbd8313ed055'),(10,'vita','vita@gmail.com','b59c67bf196a4758191e42f76670ceba'),(11,'descic','descic@gmail.com','698d51a19d8a121ce581499d7b701668'),(12,'triga','triga@gmail.com','81dc9bdb52d04dc20036dbd8313ed055'),(13,'gading','gading@gmail.com','81dc9bdb52d04dc20036dbd8313ed055');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'rekam_medis'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-06-15 22:09:10
